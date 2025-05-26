@@ -4,7 +4,6 @@
     "module": "CommonJS",
     "lib": ["ES2022"],
     "outDir": "./dist",
-    "rootDir": "./",
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
@@ -16,14 +15,16 @@
     "declaration": true,
     "declarationMap": true,
     "sourceMap": true,
+    "baseUrl": "./",
     "paths": {
       "@/*": ["./*"]
     }
   },
-  "include": ["**/*.ts", "**/*.tsx"],
+  "include": ["**/*.ts"],
   "exclude": ["node_modules", "dist", "artifacts", "cache"],
   "ts-node": {
     "files": true,
-    "transpileOnly": true
+    "transpileOnly": true,
+    "require": ["tsconfig-paths/register"]
   }
 }

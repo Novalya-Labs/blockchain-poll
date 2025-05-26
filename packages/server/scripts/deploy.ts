@@ -1,7 +1,7 @@
-import { ethers } from 'hardhat';
+import hre from 'hardhat';
 
 async function main(): Promise<void> {
-  const VoteContract = await ethers.getContractFactory('VoteContract');
+  const VoteContract = await hre.ethers.getContractFactory('VoteContract');
   const voteContract = await VoteContract.deploy();
   await voteContract.waitForDeployment();
 
