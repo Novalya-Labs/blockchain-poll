@@ -17,8 +17,8 @@ app.use('/health', (_, res) => {
   res.status(200).json({ message: 'OK' });
 });
 
-app.use('/poll', pollRoutes);
-app.use('/vote', voteRoutes);
+app.use('/polls', pollRoutes);
+app.use('/votes', voteRoutes);
 
 const PORT = Env.PORT;
 app.listen(PORT, () => {
