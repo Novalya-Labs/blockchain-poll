@@ -15,7 +15,7 @@ export const createVote = async (pollId: string, payload: CreateVotePayload) => 
     throw new Error('You are not authorized to create a vote');
   }
 
-  const response = await fetch(`/api/polls/${pollId}/vote`, {
+  const response = await fetch(`/api/votes/${pollId}/vote`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

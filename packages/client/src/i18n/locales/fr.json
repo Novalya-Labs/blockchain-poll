@@ -11,6 +11,72 @@
     }
   },
   "home": {},
+  "admin": {
+    "dashboard": {
+      "title": "Tableau de Bord Admin",
+      "welcome": "Bon retour, Admin!",
+      "subtitle": "Gérez vos sondages et surveillez l'activité de vote",
+      "quickActions": {
+        "title": "Actions Rapides",
+        "createPoll": "Créer un Nouveau Sondage",
+        "viewPolls": "Voir Tous les Sondages"
+      },
+      "stats": {
+        "title": "Aperçu",
+        "totalPolls": "Total des Sondages",
+        "activePolls": "Sondages Actifs",
+        "totalVotes": "Total des Votes",
+        "recentActivity": "Activité Récente",
+        "loading": "Chargement...",
+        "noData": "Aucune donnée disponible"
+      },
+      "recentPolls": {
+        "title": "Sondages Récents",
+        "viewAll": "Voir Tout",
+        "noPollsYet": "Aucun sondage créé pour le moment",
+        "createFirst": "Créez votre premier sondage pour commencer",
+        "loading": "Chargement des sondages...",
+        "error": "Échec du chargement des sondages"
+      }
+    }
+  },
+  "civil": {
+    "dashboard": {
+      "title": "Tableau de Bord Citoyen",
+      "welcome": "Bienvenue, Citoyen!",
+      "subtitle": "Participez aux décisions communautaires et faites entendre votre voix",
+      "quickActions": {
+        "title": "Actions Rapides",
+        "browsePolls": "Parcourir les Sondages Actifs"
+      },
+      "stats": {
+        "title": "Votre Participation",
+        "pollsVoted": "Sondages Votés",
+        "activePolls": "Sondages Actifs",
+        "upcomingPolls": "Sondages à Venir",
+        "lastActivity": "Dernière Activité",
+        "loading": "Chargement...",
+        "noData": "Aucune donnée disponible"
+      },
+      "activePolls": {
+        "title": "Sondages Actifs",
+        "viewAll": "Voir Tout",
+        "noPollsActive": "Aucun sondage actif pour le moment",
+        "checkBackLater": "Revenez plus tard pour de nouvelles opportunités de vote",
+        "voteNow": "Voter Maintenant",
+        "timeLeft": "Temps Restant",
+        "participants": "participants",
+        "loading": "Chargement des sondages...",
+        "error": "Échec du chargement des sondages",
+        "votes": "votes"
+      },
+      "recentActivity": {
+        "title": "Activité Récente",
+        "noActivity": "Aucune activité récente",
+        "startVoting": "Commencez à participer aux sondages pour voir votre activité ici"
+      }
+    }
+  },
   "auth": {
     "signIn": {
       "title": "Connexion",

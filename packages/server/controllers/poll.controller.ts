@@ -13,13 +13,13 @@ export class PollController {
   }
 
   async getPoll(req: Request, res: Response) {
-    const poll = await pollService.getPoll(req.params.id);
+    const poll = await pollService.getPoll(req.params.pollId);
     if (!poll) return res.status(404).json({ message: 'Poll not found' });
     return res.status(200).json(poll);
   }
 
   async getPollVotes(req: Request, res: Response) {
-    const count = await pollService.getPollVotes(req.params.id);
+    const count = await pollService.getPollVotes(req.params.pollId);
     return res.status(200).json({ count });
   }
 }

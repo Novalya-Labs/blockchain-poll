@@ -5,7 +5,7 @@ export interface Vote {
   id: string;
   pollId: string;
   voterId: string;
-  choice: string;
+  option: { id: string; text: string };
   createdAt: string;
 }
 

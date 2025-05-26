@@ -2,6 +2,7 @@ import { DataSource } from 'typeorm';
 import { Env } from './env';
 import { Poll } from '@/entities/Poll';
 import { Vote } from '@/entities/Vote';
+import { Option } from '@/entities/Option';
 
 export const AppDataSource = new DataSource({
   type: 'postgres',
@@ -12,7 +13,7 @@ export const AppDataSource = new DataSource({
   database: Env.DB_NAME,
   synchronize: true,
   logging: false,
-  entities: [Poll, Vote],
+  entities: [Poll, Vote, Option],
   migrations: [],
   subscribers: [],
 });

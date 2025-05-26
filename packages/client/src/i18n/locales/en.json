@@ -11,6 +11,72 @@
     }
   },
   "home": {},
+  "admin": {
+    "dashboard": {
+      "title": "Admin Dashboard",
+      "welcome": "Welcome back, Admin!",
+      "subtitle": "Manage your polls and monitor voting activity",
+      "quickActions": {
+        "title": "Quick Actions",
+        "createPoll": "Create New Poll",
+        "viewPolls": "View All Polls"
+      },
+      "stats": {
+        "title": "Overview",
+        "totalPolls": "Total Polls",
+        "activePolls": "Active Polls",
+        "totalVotes": "Total Votes",
+        "recentActivity": "Recent Activity",
+        "loading": "Loading...",
+        "noData": "No data available"
+      },
+      "recentPolls": {
+        "title": "Recent Polls",
+        "viewAll": "View All",
+        "noPollsYet": "No polls created yet",
+        "createFirst": "Create your first poll to get started",
+        "loading": "Loading polls...",
+        "error": "Failed to load polls"
+      }
+    }
+  },
+  "civil": {
+    "dashboard": {
+      "title": "Citizen Dashboard",
+      "welcome": "Welcome, Citizen!",
+      "subtitle": "Participate in community decisions and make your voice heard",
+      "quickActions": {
+        "title": "Quick Actions",
+        "browsePolls": "Browse Active Polls"
+      },
+      "stats": {
+        "title": "Your Participation",
+        "pollsVoted": "Polls Voted",
+        "activePolls": "Active Polls",
+        "upcomingPolls": "Upcoming Polls",
+        "lastActivity": "Last Activity",
+        "loading": "Loading...",
+        "noData": "No data available"
+      },
+      "activePolls": {
+        "title": "Active Polls",
+        "viewAll": "View All",
+        "noPollsActive": "No active polls right now",
+        "checkBackLater": "Check back later for new voting opportunities",
+        "voteNow": "Vote Now",
+        "timeLeft": "Time Left",
+        "participants": "participants",
+        "loading": "Loading polls...",
+        "error": "Failed to load polls",
+        "votes": "votes"
+      },
+      "recentActivity": {
+        "title": "Recent Activity",
+        "noActivity": "No recent activity",
+        "startVoting": "Start participating in polls to see your activity here"
+      }
+    }
+  },
   "auth": {
     "signIn": {
       "title": "Sign In",
