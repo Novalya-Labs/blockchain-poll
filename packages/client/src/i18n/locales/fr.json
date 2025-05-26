@@ -1,0 +1,22 @@
+{
+  "common": {},
+  "home": {},
+  "auth": {
+    "signIn": {
+      "title": "Connexion",
+      "subtitle": "Connectez-vous à votre compte pour continuer",
+      "role": {
+        "civil": "Civil",
+        "admin": "Admin"
+      },
+      "roleDescription": "Sélectionnez votre rôle pour continuer",
+      "rolePlaceholder": "Sélectionnez votre rôle",
+      "email": "Email",
+      "emailPlaceholder": "Entrez votre email",
+      "password": "Mot de passe",
+      "passwordPlaceholder": "Entrez votre mot de passe",
+      "loggingInButton": "Connexion en cours...",
+      "loginButton": "Connexion"
+    }
+  }
+}
