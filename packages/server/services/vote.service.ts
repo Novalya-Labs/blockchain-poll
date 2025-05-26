@@ -1,25 +1,28 @@
-import { contract } from '@/configs/blockchain';
-import { zkpUtils } from '@/utils/zkp';
-import { ethers } from 'ethers';
+import { AppDataSource } from '@/configs/database';
+import { Vote } from '@/entities/Vote';
+import { Poll } from '@/entities/Poll';
 
-export const voteService = {
-  castVote: async (voterId: string, voteChoice: string) => {
-    const { proof, publicSignals } = await zkpUtils.generateProof(voterId, voteChoice);
+export class VoteService {
+  private pollRepo = AppDataSource.getRepository(Poll);
+  private voteRepo = AppDataSource.getRepository(Vote);
 
-    const isValid = await zkpUtils.verifyProof(proof, publicSignals);
-    if (!isValid) {
-      throw new Error('Invalid ZKP proof.');
-    }
+  async castVote(pollId: string, voterId: string) {
+    const poll = await this.pollRepo.findOne({ where: { id: pollId } });
+    if (!poll) return { success: false, message: 'Poll not found' };
 
-    const voterIdHash = ethers.keccak256(ethers.toUtf8Bytes(voterId));
-    const voteHash = ethers.keccak256(ethers.toUtf8Bytes(voteChoice));
+    const existingVote = await this.voteRepo.findOne({ where: { poll: { id: pollId }, voterId } });
+    if (existingVote) return { success: false, message: 'User already voted' };
 
-    const alreadyVoted = await contract.hasVoted(voterIdHash);
-    if (alreadyVoted) {
-      throw new Error('Already voted');
-    }
+    const vote = this.voteRepo.create({ poll, voterId });
+    await this.voteRepo.save(vote);
 
-    const tx = await contract.vote(voterIdHash, voteHash);
-    await tx.wait();
-  },
-};
+    return { success: true };
+  }
+
+  async hasVoted(pollId: string, voterId: string) {
+    const vote = await this.voteRepo.findOne({ where: { poll: { id: pollId }, voterId } });
+    return !!vote;
+  }
+}
+
+export const voteService = new VoteService();

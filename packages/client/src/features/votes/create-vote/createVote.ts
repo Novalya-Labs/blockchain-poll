@@ -1,9 +1,8 @@
 import z from 'zod';
 
 export const createVoteSchema = z.object({
-  title: z.string().min(1),
-  description: z.string().min(1),
-  options: z.array(z.string()).min(2),
+  pollId: z.string().uuid(),
+  option: z.string().min(1),
 });
 
 export type CreateVotePayload = z.infer<typeof createVoteSchema>;

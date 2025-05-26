@@ -1,20 +1,23 @@
 import { Request, Response } from 'express';
 import { voteService } from '@/services/vote.service';
 
-export const voteController = {
-  vote: async (req: Request, res: Response) => {
-    const { voterId, voteChoice } = req.body;
+export class VoteController {
+  async castVote(req: Request, res: Response) {
+    const { voterId } = req.body;
+    const pollId = req.params.id;
 
-    if (!voterId || !voteChoice) {
-      return res.status(400).json({ message: 'voterId and voteChoice are required' });
-    }
+    const result = await voteService.castVote(pollId, voterId);
+    if (!result.success) return res.status(400).json({ message: result.message });
+    return res.status(201).json({ message: 'Vote enregistré' });
+  }
 
-    try {
-      await voteService.castVote(voterId, voteChoice);
-      res.json({ message: 'Vote recorded successfully!' });
-    } catch (error) {
-      console.error('Error in controller:', error);
-      res.status(500).json({ message: 'Internal server error' });
-    }
-  },
-};
+  async getMyVoteStatus(req: Request, res: Response) {
+    const { voterId } = req.query as { voterId: string };
+    const pollId = req.params.id;
+
+    const hasVoted = await voteService.hasVoted(pollId, voterId);
+    return res.status(200).json({ hasVoted });
+  }
+}
+
+export const voteController = new VoteController();

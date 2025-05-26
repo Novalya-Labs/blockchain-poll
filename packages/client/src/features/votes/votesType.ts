@@ -1,21 +1,24 @@
-import { CreateVotePayload } from './create-vote/createPoll';
+import { CreateVotePayload } from './create-vote/createVote';
+import { GetVotePayload } from './get-vote/getVote';
 
 export interface Vote {
   id: string;
-  title: string;
-  description: string;
+  pollId: string;
+  voterId: string;
   createdAt: string;
-  updatedAt: string;
 }
 
 export interface VoteState {
   votes: Vote[];
+  vote: Vote | null;
   loading: boolean;
   error: string | null;
 }
 
 export type VoteStore = VoteState & {
   createVote: (payload: CreateVotePayload) => Promise<void>;
-  getVotes: () => Promise<void>;
+  getVotes: (pollId: string) => Promise<void>;
+  getVote: (payload: GetVotePayload) => Promise<void>;
   resetVotes: () => void;
+  clearError: () => void;
 };
