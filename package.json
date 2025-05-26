@@ -6,6 +6,7 @@
   "private": true,
   "workspaces": ["packages/*"],
   "scripts": {
+    "dev:server:hardhat": "yarn workspace @blockchain-poll/server deploy:node",
     "dev:client": "yarn workspace @blockchain-poll/client dev",
     "dev:server": "yarn workspace @blockchain-poll/server dev",
     "build:client": "yarn workspace @blockchain-poll/client build",

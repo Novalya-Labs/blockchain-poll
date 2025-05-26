@@ -5,6 +5,8 @@ export interface Poll {
   id: string;
   title: string;
   description: string;
+  options: string[];
+  status: 'active' | 'closed';
   createdAt: string;
 }
 

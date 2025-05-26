@@ -73,4 +73,7 @@ reset: ## Reset database (clear and restart)
 dev-all: ## Start both client and server in development mode
 	make dev-client & make dev-server
 
-.PHONY: help dev-client dev-server build-client build-server start-client start-server lint format db-up db-down db-restart db-logs db-shell db-clear reset dev-all
+dev-server-hardhat: ## Start server in development mode with hardhat
+	yarn workspace $(SERVER) dev:server:hardhat
+
+.PHONY: help dev-client dev-server build-client build-server start-client start-server lint format db-up db-down db-restart db-logs db-shell db-clear reset dev-all dev-server-hardhat

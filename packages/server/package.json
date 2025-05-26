@@ -7,7 +7,7 @@
     "start": "ts-node index.ts",
     "build": "tsc",
     "dev": "ts-node index.ts --watch",
-    "deploy:node": "npx hardhat run scripts/deploy.ts --network localhost"
+    "dev:server:hardhat": "npx hardhat run ./scripts/deploy.ts --network localhost"
   },
   "keywords": [],
   "author": "",
@@ -25,12 +25,14 @@
   },
   "devDependencies": {
     "@biomejs/biome": "^1.9.4",
+    "@nomicfoundation/hardhat-chai-matchers": "^2.0.8",
     "@nomicfoundation/hardhat-ethers": "^3.0.8",
     "@nomicfoundation/hardhat-toolbox": "^5.0.0",
     "@types/cors": "^2.8.18",
     "@types/express": "^4.17.21",
     "@types/node": "^20.10.0",
     "@types/pg": "^8.15.2",
+    "chai": "^5.2.0",
     "hardhat": "^2.24.1",
     "ts-node": "^10.9.1",
     "tsconfig-paths": "^4.2.0",

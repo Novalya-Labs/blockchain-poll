@@ -18,10 +18,10 @@ export const useVoteStore = create<VoteStore>()(
     (set) => ({
       ...initialVoteState,
 
-      createVote: async (payload: CreateVotePayload) => {
+      createVote: async (pollId: string, payload: CreateVotePayload) => {
         set({ loading: true, error: null });
         try {
-          await createVote(payload);
+          await createVote(pollId, payload);
           set({ loading: false });
         } catch (error) {
           set({

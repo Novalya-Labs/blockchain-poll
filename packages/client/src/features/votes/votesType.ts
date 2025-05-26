@@ -5,6 +5,7 @@ export interface Vote {
   id: string;
   pollId: string;
   voterId: string;
+  choice: string;
   createdAt: string;
 }
 
@@ -16,7 +17,7 @@ export interface VoteState {
 }
 
 export type VoteStore = VoteState & {
-  createVote: (payload: CreateVotePayload) => Promise<void>;
+  createVote: (pollId: string, payload: CreateVotePayload) => Promise<void>;
   getVotes: (pollId: string) => Promise<void>;
   getVote: (payload: GetVotePayload) => Promise<void>;
   resetVotes: () => void;

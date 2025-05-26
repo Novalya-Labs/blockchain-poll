@@ -16,12 +16,11 @@ import {
 import { env } from '@/configs/env';
 import { useAuthStore } from '@/features/auth/authStore';
 import { adminRoutes, publicRoutes } from '@/navigations/urls';
-import { VideoIcon } from 'lucide-react';
-import { useTranslation } from 'react-i18next';
+import { VideoIcon, BarChart3 } from 'lucide-react';
+
 import { Navigate, useLocation, useNavigate } from 'react-router-dom';
 
 export default function AuthLayout() {
-  const { t } = useTranslation();
   const { isAuthenticated } = useAuthStore();
   const navigate = useNavigate();
   const pathname = useLocation();
@@ -47,7 +46,14 @@ export default function AuthLayout() {
                   className={`p-2 flex items-center gap-2 rounded-md cursor-pointer ${pathname.pathname === adminRoutes.dashboard ? 'bg-primary text-primary-foreground' : 'hover:bg-primary/80'}`}
                 >
                   <VideoIcon className="size-4" />
-                  <span>{t('videos:title')}</span>
+                  <span>Dashboard</span>
+                </SidebarMenuItem>
+                <SidebarMenuItem
+                  onClick={() => navigate(adminRoutes.polls)}
+                  className={`p-2 flex items-center gap-2 rounded-md cursor-pointer ${pathname.pathname === adminRoutes.polls ? 'bg-primary text-primary-foreground' : 'hover:bg-primary/80'}`}
+                >
+                  <BarChart3 className="size-4" />
+                  <span>Polls</span>
                 </SidebarMenuItem>
               </SidebarMenu>
             </SidebarGroupContent>

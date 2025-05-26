@@ -36,6 +36,9 @@
         "noNonNullAssertion": "off",
         "useImportType": "off",
         "noUselessElse": "off"
+      },
+      "suspicious": {
+        "noArrayIndexKey": "off"
       }
     }
   },
