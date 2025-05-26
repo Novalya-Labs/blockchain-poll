@@ -69,8 +69,8 @@ export const useVoteStore = create<VoteStore>()(
     {
       name: `vote-storage-${env.app.appKey}`,
       partialize: (state) => ({
-        loading: state.loading,
-        error: state.error,
+        votes: state.votes,
+        vote: state.vote,
       }),
     },
   ),

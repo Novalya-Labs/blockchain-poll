@@ -1,3 +1,4 @@
+import { useAuthStore } from '@/features/auth/authStore';
 import z from 'zod';
 
 export const createVoteSchema = z.object({
@@ -8,12 +9,21 @@ export const createVoteSchema = z.object({
 export type CreateVotePayload = z.infer<typeof createVoteSchema>;
 
 export const createVote = async (pollId: string, payload: CreateVotePayload) => {
+  const { role } = useAuthStore.getState();
+
+  if (role !== 'civil') {
+    throw new Error('You are not authorized to create a vote');
+  }
+
   const response = await fetch(`/api/polls/${pollId}/vote`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify(payload),
+    body: JSON.stringify({
+      ...payload,
+      role,
+    }),
   });
   return response.json();
 };

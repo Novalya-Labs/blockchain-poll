@@ -1,5 +1,15 @@
 {
-  "common": {},
+  "common": {
+    "userDropdown": {
+      "signOut": "Sign Out",
+      "language": "Language",
+      "languagePlaceholder": "Select your language",
+      "languageOptions": {
+        "en": "English",
+        "fr": "French"
+      }
+    }
+  },
   "home": {},
   "auth": {
     "signIn": {

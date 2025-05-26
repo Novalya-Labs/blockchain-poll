@@ -9,7 +9,7 @@ import { type SignInPayload, signInSchema } from '@/features/auth/sign-in/signIn
 import { adminRoutes, civilRoutes, publicRoutes } from '@/navigations/urls';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Eye, EyeOff, Loader2 } from 'lucide-react';
-import { useEffect, useState } from 'react';
+import { useEffect, useId, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
@@ -18,6 +18,7 @@ import { useNavigate } from 'react-router-dom';
 const SignInPage = () => {
   const { signIn, loading, error, clearError, role, isAuthenticated } = useAuthStore();
   const { t } = useTranslation();
+  const id = useId();
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
 
@@ -39,6 +40,7 @@ const SignInPage = () => {
       email: '',
       role: 'civil',
       password: '',
+      id: id,
     },
   });
 

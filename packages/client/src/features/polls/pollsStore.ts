@@ -69,8 +69,8 @@ export const usePollStore = create<PollStore>()(
     {
       name: `poll-storage-${env.app.appKey}`,
       partialize: (state) => ({
-        loading: state.loading,
-        error: state.error,
+        polls: state.polls,
+        poll: state.poll,
       }),
     },
   ),

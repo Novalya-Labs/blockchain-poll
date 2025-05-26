@@ -16,7 +16,7 @@ import {
 import { env } from '@/configs/env';
 import { useAuthStore } from '@/features/auth/authStore';
 import { adminRoutes, publicRoutes } from '@/navigations/urls';
-import { VideoIcon, BarChart3 } from 'lucide-react';
+import { LayoutDashboard, BarChart3 } from 'lucide-react';
 
 import { Navigate, useLocation, useNavigate } from 'react-router-dom';
 
@@ -45,7 +45,7 @@ export default function AuthLayout() {
                   onClick={() => navigate(adminRoutes.dashboard)}
                   className={`p-2 flex items-center gap-2 rounded-md cursor-pointer ${pathname.pathname === adminRoutes.dashboard ? 'bg-primary text-primary-foreground' : 'hover:bg-primary/80'}`}
                 >
-                  <VideoIcon className="size-4" />
+                  <LayoutDashboard className="size-4" />
                   <span>Dashboard</span>
                 </SidebarMenuItem>
                 <SidebarMenuItem

@@ -5,6 +5,7 @@ export type Role = 'civil' | 'admin';
 export interface AuthState {
   isAuthenticated: boolean;
   role: Role | null;
+  voterId: string | null;
   loading: boolean;
   error: string | null;
   language: string;

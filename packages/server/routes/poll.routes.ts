@@ -7,8 +7,8 @@ import { authAdmin } from '@/middlewares/auth.middleware';
 const router = Router();
 
 router.post('/', authAdmin, validate(createPollSchema), pollController.createPoll);
-router.get('/', authAdmin, pollController.listPolls);
-router.get('/:id', authAdmin, validate(getPollSchema, 'params'), pollController.getPoll);
-router.get('/:id/votes', authAdmin, validate(getPollSchema, 'params'), pollController.getPollVotes);
+router.get('/', pollController.listPolls);
+router.get('/:pollId', validate(getPollSchema, 'params'), pollController.getPoll);
+router.get('/:pollId/votes', authAdmin, validate(getPollSchema, 'params'), pollController.getPollVotes);
 
 export default router;

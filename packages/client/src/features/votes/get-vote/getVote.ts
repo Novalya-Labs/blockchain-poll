@@ -1,13 +1,23 @@
+import { useAuthStore } from '@/features/auth/authStore';
 import z from 'zod';
 
 export const getVoteSchema = z.object({
   pollId: z.string().uuid(),
-  voterId: z.string().min(3),
 });
 
 export type GetVotePayload = z.infer<typeof getVoteSchema>;
 
 export const getVote = async (payload: GetVotePayload) => {
-  const response = await fetch(`/api/polls/${payload.pollId}/vote?voterId=${payload.voterId}`);
+  const { voterId, role } = useAuthStore.getState();
+
+  if (role !== 'civil') {
+    throw new Error('You are not authorized to get a vote');
+  }
+
+  if (!voterId) {
+    throw new Error('Voter ID is required');
+  }
+
+  const response = await fetch(`/api/votes/${payload.pollId}/vote?voterId=${voterId}&role=${role}`);
   return response.json();
 };

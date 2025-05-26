@@ -25,7 +25,7 @@ const CivilVotePage: React.FC = () => {
     });
   };
 
-  const activePolls = polls.filter((poll) => poll.status === 'active');
+  const activePolls = polls;
 
   if (loading && polls.length === 0) {
     return (
@@ -69,7 +69,7 @@ const CivilVotePage: React.FC = () => {
       )}
 
       {activePolls.length === 0 ? (
-        <Card>
+        <Card className="mb-10">
           <CardContent className="text-center py-12">
             <Vote className="w-12 h-12 mx-auto text-muted-foreground mb-4" />
             <h3 className="text-lg font-medium mb-2">No Active Polls</h3>

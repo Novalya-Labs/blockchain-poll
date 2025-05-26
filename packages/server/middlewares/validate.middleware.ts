@@ -6,6 +6,12 @@ export const validate =
   (req: Request, res: Response, next: NextFunction) => {
     const result = schema.safeParse(req[location]);
     if (!result.success) return res.status(400).json({ error: result.error.errors });
-    req[location] = result.data;
+
+    if (location === 'query') {
+      Object.assign(req.query, result.data);
+    } else {
+      req[location] = result.data;
+    }
+
     next();
   };

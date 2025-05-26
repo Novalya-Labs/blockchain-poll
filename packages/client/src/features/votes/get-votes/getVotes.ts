@@ -1,5 +1,13 @@
+import { useAuthStore } from '@/features/auth/authStore';
+
 export const getVotes = async (pollId: string) => {
-  const response = await fetch(`/api/polls/${pollId}/votes`, {
+  const { role } = useAuthStore.getState();
+
+  if (role !== 'admin') {
+    throw new Error('You are not authorized to fetch votes');
+  }
+
+  const response = await fetch(`/api/polls/${pollId}/votes?role=${role}`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',

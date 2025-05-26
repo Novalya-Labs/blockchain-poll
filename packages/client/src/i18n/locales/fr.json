@@ -1,5 +1,15 @@
 {
-  "common": {},
+  "common": {
+    "userDropdown": {
+      "signOut": "Déconnexion",
+      "language": "Langue",
+      "languagePlaceholder": "Sélectionnez votre langue",
+      "languageOptions": {
+        "en": "Anglais",
+        "fr": "Français"
+      }
+    }
+  },
   "home": {},
   "auth": {
     "signIn": {

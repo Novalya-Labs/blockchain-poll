@@ -85,7 +85,6 @@ yarn workspace @blockchain-poll/server <command>
 - PWA support
 - Responsive design with Tailwind CSS
 - Internationalization (i18n)
-- Video management system
 
 ## Tech Stack
 

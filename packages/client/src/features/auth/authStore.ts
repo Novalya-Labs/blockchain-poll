@@ -8,6 +8,7 @@ import { signIn as signInService } from './sign-in/signIn';
 const initialAuthState: AuthState = {
   isAuthenticated: false,
   role: null,
+  voterId: null,
   loading: false,
   error: null,
   language: 'en',
@@ -21,11 +22,11 @@ export const useAuthStore = create<AuthStore>()(
       signIn: async (payload) => {
         set({ loading: true, error: null });
         try {
-          const { success, role } = await signInService(payload);
+          const { success, role, voterId } = await signInService(payload);
           if (!success) {
             throw new Error('Invalid email or password');
           }
-          set({ isAuthenticated: true, loading: false, role });
+          set({ isAuthenticated: true, loading: false, role, voterId });
         } catch (error) {
           set({
             loading: false,
@@ -65,6 +66,8 @@ export const useAuthStore = create<AuthStore>()(
       partialize: (state) => ({
         isAuthenticated: state.isAuthenticated,
         language: state.language,
+        role: state.role,
+        voterId: state.voterId,
       }),
     },
   ),
