@@ -8,7 +8,7 @@ export class VoteController {
 
     const result = await voteService.castVote(pollId, voterId, choice);
     if (!result.success) return res.status(400).json({ message: result.message });
-    return res.status(201).json({ message: 'Vote enregistré' });
+    return res.status(201).json({ message: 'Registered vote' });
   }
 
   async getMyVoteStatus(req: Request, res: Response) {
