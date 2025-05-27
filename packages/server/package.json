@@ -8,7 +8,8 @@
     "build": "tsc",
     "dev": "nodemon index.ts ",
     "dev:server:hardhat": "npx hardhat run ./scripts/deploy.ts --network localhost",
-    "hardhat:node": "npx hardhat node"
+    "hardhat:node": "npx hardhat node",
+    "test:vote": "ts-node scripts/test-vote.ts"
   },
   "keywords": [],
   "author": "",

@@ -22,6 +22,9 @@ export class Vote {
   )
   option!: Option;
 
+  @Column({ nullable: true })
+  transactionHash?: string;
+
   @CreateDateColumn()
   createdAt!: Date;
 }
