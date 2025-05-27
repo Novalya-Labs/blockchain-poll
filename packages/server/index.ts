@@ -1,13 +1,11 @@
 import 'reflect-metadata';
-import dotenv from 'dotenv';
+import 'dotenv/config';
 import express from 'express';
 import cors from 'cors';
 import pollRoutes from './routes/poll.routes';
 import voteRoutes from './routes/vote.routes';
 import { AppDataSource } from './configs/database';
 import { Env } from './configs/env';
-
-dotenv.config();
 
 const app = express();
 app.use(express.json());
