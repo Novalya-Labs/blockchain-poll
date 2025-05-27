@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useTranslation } from 'react-i18next';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -15,6 +16,7 @@ interface CreatePollFormProps {
 }
 
 export const CreatePollForm: React.FC<CreatePollFormProps> = ({ onSuccess }) => {
+  const { t } = useTranslation();
   const { createPoll, loading, error, clearError } = usePollStore();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [options, setOptions] = useState(['', '']);
@@ -53,7 +55,7 @@ export const CreatePollForm: React.FC<CreatePollFormProps> = ({ onSuccess }) => 
 
   const removeOption = (index: number) => {
     if (options.length > 2) {
-      setOptions(options.filter((_, i) => i !== index));
+      setOptions(options?.filter((_, i) => i !== index));
     }
   };
 
@@ -78,9 +80,9 @@ export const CreatePollForm: React.FC<CreatePollFormProps> = ({ onSuccess }) => 
           name="title"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Poll Title</FormLabel>
+              <FormLabel>{t('forms:createPoll.title')}</FormLabel>
               <FormControl>
-                <Input placeholder="Enter poll title..." {...field} />
+                <Input placeholder={t('forms:createPoll.titlePlaceholder')} {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -92,9 +94,13 @@ export const CreatePollForm: React.FC<CreatePollFormProps> = ({ onSuccess }) => 
           name="description"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Description (Optional)</FormLabel>
+              <FormLabel>{t('forms:createPoll.description')}</FormLabel>
               <FormControl>
-                <Textarea placeholder="Enter poll description..." className="min-h-[100px]" {...field} />
+                <Textarea
+                  placeholder={t('forms:createPoll.descriptionPlaceholder')}
+                  className="min-h-[100px]"
+                  {...field}
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -103,10 +109,10 @@ export const CreatePollForm: React.FC<CreatePollFormProps> = ({ onSuccess }) => 
 
         <div className="space-y-4">
           <div className="flex items-center justify-between">
-            <FormLabel>Poll Options</FormLabel>
+            <FormLabel>{t('forms:createPoll.options')}</FormLabel>
             <Button type="button" variant="outline" size="sm" onClick={addOption} disabled={options.length >= 10}>
               <Plus className="w-4 h-4 mr-1" />
-              Add Option
+              {t('forms:createPoll.addOption')}
             </Button>
           </div>
 
@@ -114,7 +120,7 @@ export const CreatePollForm: React.FC<CreatePollFormProps> = ({ onSuccess }) => 
             {options.map((option, index) => (
               <div key={`option-${index}`} className="flex items-center space-x-2">
                 <Input
-                  placeholder={`Option ${index + 1}`}
+                  placeholder={`${t('forms:createPoll.optionPlaceholder')} ${index + 1}`}
                   value={option}
                   onChange={(e) => updateOption(index, e.target.value)}
                 />
@@ -127,12 +133,14 @@ export const CreatePollForm: React.FC<CreatePollFormProps> = ({ onSuccess }) => 
             ))}
           </div>
 
-          {options.length < 2 && <p className="text-sm text-muted-foreground">A poll must have at least 2 options.</p>}
+          {options.length < 2 && (
+            <p className="text-sm text-muted-foreground">{t('forms:createPoll.minOptionsWarning')}</p>
+          )}
         </div>
 
         <div className="flex justify-end space-x-2">
           <Button type="submit" disabled={loading || isSubmitting} className="min-w-[120px]">
-            {loading || isSubmitting ? 'Creating...' : 'Create Poll'}
+            {loading || isSubmitting ? t('forms:createPoll.creating') : t('forms:createPoll.createPoll')}
           </Button>
         </div>
       </form>

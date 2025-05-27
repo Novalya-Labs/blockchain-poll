@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -11,6 +12,7 @@ import { adminRoutes } from '@/navigations/urls';
 import { ArrowLeft, Calendar, Users, BarChart3 } from 'lucide-react';
 
 const AdminPollDetailsPage: React.FC = () => {
+  const { t } = useTranslation();
   const { id } = useParams<{ id: string }>();
   const { poll, loading: pollLoading, error: pollError, getPoll, clearError: clearPollError } = usePollStore();
   const { votes, loading: votesLoading, error: votesError, getVotes, clearError: clearVotesError } = useVoteStore();
@@ -36,12 +38,12 @@ const AdminPollDetailsPage: React.FC = () => {
     });
   };
 
-  const getVoteCount = (option: string) => {
-    return votes.filter((vote) => vote.choice === option).length;
+  const getVoteCount = (option: { id: string; text: string }) => {
+    return votes?.filter((vote) => vote.option.id === option.id).length ?? 0;
   };
 
   const getTotalVotes = () => {
-    return votes.length;
+    return votes?.length ?? 0;
   };
 
   if (pollLoading && !poll) {
@@ -81,7 +83,7 @@ const AdminPollDetailsPage: React.FC = () => {
           </Link>
         </div>
         <Alert variant="destructive">
-          <AlertDescription>{pollError || 'Poll not found'}</AlertDescription>
+          <AlertDescription>{pollError || t('admin:pollDetails.pollNotFound')}</AlertDescription>
         </Alert>
       </div>
     );
@@ -163,7 +165,7 @@ const AdminPollDetailsPage: React.FC = () => {
                   return (
                     <div key={`result-${index}`} className="space-y-2">
                       <div className="flex justify-between items-center">
-                        <span className="font-medium">{option}</span>
+                        <span className="font-medium">{option.text}</span>
                         <span className="text-sm text-muted-foreground">
                           {voteCount} votes ({percentage.toFixed(1)}%)
                         </span>
@@ -207,7 +209,7 @@ const AdminPollDetailsPage: React.FC = () => {
                   <div key={vote.id} className="flex justify-between items-center py-2 border-b last:border-b-0">
                     <div>
                       <span className="font-medium">Voter #{index + 1}</span>
-                      <span className="text-sm text-muted-foreground ml-2">voted for "{vote.choice}"</span>
+                      <span className="text-sm text-muted-foreground ml-2">voted for "{vote.option.text}"</span>
                     </div>
                     <span className="text-sm text-muted-foreground">{formatDate(vote.createdAt)}</span>
                   </div>

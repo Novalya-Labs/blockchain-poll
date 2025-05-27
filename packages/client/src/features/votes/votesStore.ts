@@ -36,7 +36,7 @@ export const useVoteStore = create<VoteStore>()(
         set({ loading: true, error: null });
         try {
           const votes = await getVotes(pollId);
-          set({ votes: votes as Vote[], loading: false });
+          set({ votes: Array.isArray(votes) ? (votes as Vote[]) : [], loading: false });
         } catch (error) {
           set({
             loading: false,

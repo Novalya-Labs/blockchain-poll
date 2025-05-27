@@ -25,8 +25,11 @@ export class PollService {
   }
 
   async getPollVotes(id: string) {
-    const poll = await this.repo.findOne({ where: { id }, relations: ['votes'] });
-    return poll ? poll.votes.length : 0;
+    const poll = await this.repo.findOne({
+      where: { id },
+      relations: ['votes', 'votes.option'],
+    });
+    return poll ? poll.votes : [];
   }
 }
 

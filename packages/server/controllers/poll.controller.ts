@@ -19,8 +19,8 @@ export class PollController {
   }
 
   async getPollVotes(req: Request, res: Response) {
-    const count = await pollService.getPollVotes(req.params.pollId);
-    return res.status(200).json({ count });
+    const votes = await pollService.getPollVotes(req.params.pollId);
+    return res.status(200).json(votes);
   }
 }
 

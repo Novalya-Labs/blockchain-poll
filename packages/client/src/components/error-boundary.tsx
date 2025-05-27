@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { Link, isRouteErrorResponse, useRouteError } from 'react-router-dom';
 
 export default function ErrorBoundaryPage() {
-  const { t } = useTranslation('boundary-error');
+  const { t } = useTranslation('errorBoundary');
   const error = useRouteError();
   let errorMessage = t('subtitle');
 
@@ -19,7 +19,7 @@ export default function ErrorBoundaryPage() {
       <h1 className="text-6xl font-bold text-gray-200 mb-4">{t('title')}</h1>
       <h2 className="text-2xl font-semibold text-gray-300 mb-6">{t('subtitle')}</h2>
       <p className="text-gray-400 max-w-md mb-8">{errorMessage}</p>
-      <Link to={publicRoutes.signIn}>
+      <Link to={publicRoutes.home}>
         <Button variant="outline" size="lg">
           {t('button')}
         </Button>

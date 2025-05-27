@@ -1,4 +1,9 @@
 {
+  "errorBoundary": {
+    "title": "Oops! Something went wrong.",
+    "subtitle": "We're sorry, but an unexpected error occurred.",
+    "button": "Go Home"
+  },
   "common": {
     "userDropdown": {
       "signOut": "Sign Out",
@@ -8,9 +13,75 @@
         "en": "English",
         "fr": "French"
       }
+    },
+    "notFound": {
+      "title": "404",
+      "subtitle": "Page Not Found",
+      "description": "The page you are looking for does not exist or has been moved.",
+      "button": "Go Home"
+    },
+    "actions": {
+      "tryAgain": "Try Again",
+      "getStarted": "Get Started",
+      "backToPolls": "Back to Polls",
+      "viewDetails": "View Details",
+      "viewOtherPolls": "View Other Polls",
+      "getNotified": "Get Notified"
+    },
+    "status": {
+      "active": "Active",
+      "completed": "Completed",
+      "urgent": "Urgent",
+      "voted": "Voted"
+    },
+    "labels": {
+      "votes": "votes",
+      "options": "options",
+      "participants": "participants",
+      "description": "Description",
+      "participation": "Participation"
     }
   },
-  "home": {},
+  "home": {
+    "title": "Blockchain Poll",
+    "subtitle": "Participate in democratic decisions using blockchain technology"
+  },
+  "howItWorks": {
+    "title": "How It Works",
+    "subtitle": "Learn about our platform and how we help connect citizens with their local administration",
+    "steps": {
+      "createAccount": {
+        "title": "Create an Account",
+        "description": "Sign up as a citizen or administrator to access the platform's features"
+      },
+      "submitRequests": {
+        "title": "Submit Requests",
+        "description": "Citizens can easily submit and track their administrative requests"
+      },
+      "getUpdates": {
+        "title": "Get Updates",
+        "description": "Receive real-time updates and notifications about your requests' status"
+      }
+    },
+    "cta": {
+      "title": "Ready to get started?",
+      "button": "Sign Up Now"
+    }
+  },
+  "forms": {
+    "createPoll": {
+      "title": "Poll Title",
+      "titlePlaceholder": "Enter poll title...",
+      "description": "Description (Optional)",
+      "descriptionPlaceholder": "Enter poll description...",
+      "options": "Poll Options",
+      "addOption": "Add Option",
+      "optionPlaceholder": "Option",
+      "minOptionsWarning": "A poll must have at least 2 options.",
+      "creating": "Creating...",
+      "createPoll": "Create Poll"
+    }
+  },
   "admin": {
     "dashboard": {
       "title": "Admin Dashboard",
@@ -19,7 +90,9 @@
       "quickActions": {
         "title": "Quick Actions",
         "createPoll": "Create New Poll",
-        "viewPolls": "View All Polls"
+        "createPollDescription": "Start a new poll for your community",
+        "viewPolls": "View All Polls",
+        "viewPollsDescription": "Manage and monitor all polls"
       },
       "stats": {
         "title": "Overview",
@@ -28,16 +101,58 @@
         "totalVotes": "Total Votes",
         "recentActivity": "Recent Activity",
         "loading": "Loading...",
-        "noData": "No data available"
+        "noData": "No data available",
+        "activeStatus": "active",
+        "completedStatus": "completed",
+        "acrossPolls": "across {count} polls",
+        "lastPollCreated": "Last poll created",
+        "noPolls": "No polls yet",
+        "none": "None"
       },
       "recentPolls": {
         "title": "Recent Polls",
         "viewAll": "View All",
         "noPollsYet": "No polls created yet",
         "createFirst": "Create your first poll to get started",
+        "createFirstButton": "Create Your First Poll",
         "loading": "Loading polls...",
-        "error": "Failed to load polls"
+        "error": "Failed to load polls",
+        "votesCount": "{count} votes",
+        "createdOn": "Created {date}"
       }
+    },
+    "polls": {
+      "title": "Polls Management",
+      "createPoll": "Create Poll",
+      "createNewPoll": "Create New Poll",
+      "allPolls": "All Polls",
+      "noPollsYet": "No polls created yet",
+      "createFirstPoll": "Create Your First Poll",
+      "table": {
+        "title": "Title",
+        "description": "Description",
+        "options": "Options",
+        "status": "Status",
+        "created": "Created",
+        "actions": "Actions",
+        "view": "View",
+        "optionsCount": "{count} options"
+      }
+    },
+    "pollDetails": {
+      "title": "Poll Details",
+      "pollNotFound": "Poll not found",
+      "information": "Poll Information",
+      "results": "Poll Results",
+      "recentVotes": "Recent Votes",
+      "createdOn": "Created on {date}",
+      "totalVotes": "{count} total votes",
+      "votesCount": "{count} votes ({percentage}%)",
+      "noOptions": "No options available for this poll.",
+      "noVotes": "No votes yet.",
+      "voterNumber": "Voter #{number}",
+      "votedFor": "voted for \"{choice}\"",
+      "moreVotes": "And {count} more votes..."
     }
   },
   "civil": {
@@ -47,7 +162,8 @@
       "subtitle": "Participate in community decisions and make your voice heard",
       "quickActions": {
         "title": "Quick Actions",
-        "browsePolls": "Browse Active Polls"
+        "browsePolls": "Browse Active Polls",
+        "browsePollsDescription": "Find and participate in active polls"
       },
       "stats": {
         "title": "Your Participation",
@@ -56,7 +172,13 @@
         "upcomingPolls": "Upcoming Polls",
         "lastActivity": "Last Activity",
         "loading": "Loading...",
-        "noData": "No data available"
+        "noData": "No data available",
+        "outOfTotal": "out of {total} total",
+        "availableToVote": "available to vote",
+        "startingSoon": "starting soon",
+        "lastVoteCast": "last vote cast",
+        "noVotesYet": "No votes yet",
+        "none": "None"
       },
       "activePolls": {
         "title": "Active Polls",
@@ -68,19 +190,52 @@
         "participants": "participants",
         "loading": "Loading polls...",
         "error": "Failed to load polls",
-        "votes": "votes"
+        "votes": "votes",
+        "viewResults": "View Results",
+        "category": "Community"
       },
       "recentActivity": {
         "title": "Recent Activity",
         "noActivity": "No recent activity",
-        "startVoting": "Start participating in polls to see your activity here"
+        "startVoting": "Start participating in polls to see your activity here",
+        "votedOn": "Voted on",
+        "today": "Today",
+        "yesterday": "Yesterday",
+        "daysAgo": "{days} days ago"
       }
+    },
+    "vote": {
+      "title": "Available Polls",
+      "subtitle": "Choose a poll below to cast your vote. You can only vote once per poll.",
+      "noActivePolls": "No Active Polls",
+      "noActivePollsDescription": "There are currently no active polls available for voting. Check back later!",
+      "allPollsClosed": "All Polls Closed",
+      "allPollsClosedDescription": "All available polls have been closed. No voting is currently available.",
+      "voteNow": "Vote Now",
+      "optionsLabel": "Options:",
+      "moreOptions": "+{count} more"
+    },
+    "voteOnPoll": {
+      "title": "Cast Your Vote",
+      "pollClosed": "Poll Closed",
+      "pollClosedDescription": "This poll is no longer accepting votes.",
+      "alreadyVoted": "Already Voted",
+      "alreadyVotedDescription": "You have already cast your vote for this poll. Thank you for participating!",
+      "chooseOption": "Choose your option:",
+      "submitVote": "Submit Vote",
+      "submittingVote": "Submitting Vote...",
+      "youSelected": "You selected: {option}",
+      "createdOn": "Created on {date}",
+      "noOptionsAvailable": "This poll has no options available. Please contact the administrator.",
+      "voteSuccess": "Vote submitted successfully!",
+      "voteError": "Failed to submit vote. Please try again."
     }
   },
   "auth": {
     "signIn": {
       "title": "Sign In",
       "subtitle": "Sign in to your account to continue",
+      "signIn": "Sign In",
       "role": {
         "civil": "Civil",
         "admin": "Admin"

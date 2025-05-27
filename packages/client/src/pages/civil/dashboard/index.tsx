@@ -27,7 +27,7 @@ const CivilDashboardPage: React.FC = () => {
   }, [getPolls]);
 
   const userVotes = useMemo(() => {
-    return votes.filter((vote) => vote.voterId === voterId);
+    return votes?.filter((vote) => vote.voterId === voterId) || [];
   }, [votes, voterId]);
 
   const stats = useMemo(() => {
@@ -85,10 +85,10 @@ const CivilDashboardPage: React.FC = () => {
 
   const activePolls = useMemo(() => {
     return polls
-      .filter((poll) => poll.status === 'active')
+      ?.filter((poll) => poll.status === 'active')
       .slice(0, 3)
       .map((poll) => {
-        const pollVotes = votes.filter((vote) => vote.pollId === poll.id);
+        const pollVotes = votes?.filter((vote) => vote.pollId === poll.id) || [];
         const userHasVoted = userVotes.some((vote) => vote.pollId === poll.id);
         const createdDate = new Date(poll.createdAt);
         const daysSinceCreated = Math.floor((Date.now() - createdDate.getTime()) / (1000 * 60 * 60 * 24));

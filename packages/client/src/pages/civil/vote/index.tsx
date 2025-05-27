@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -10,6 +11,7 @@ import { civilRoutes } from '@/navigations/urls';
 import { Vote, Calendar, Users } from 'lucide-react';
 
 const CivilVotePage: React.FC = () => {
+  const { t } = useTranslation();
   const { polls, loading, error, getPolls, clearError } = usePollStore();
 
   useEffect(() => {
@@ -58,8 +60,8 @@ const CivilVotePage: React.FC = () => {
   return (
     <div className="container mx-auto p-6">
       <div className="mb-8">
-        <h1 className="text-3xl font-bold mb-2">Available Polls</h1>
-        <p className="text-muted-foreground">Choose a poll below to cast your vote. You can only vote once per poll.</p>
+        <h1 className="text-3xl font-bold mb-2">{t('civil:vote.title')}</h1>
+        <p className="text-muted-foreground">{t('civil:vote.subtitle')}</p>
       </div>
 
       {error && (
@@ -72,10 +74,8 @@ const CivilVotePage: React.FC = () => {
         <Card className="mb-10">
           <CardContent className="text-center py-12">
             <Vote className="w-12 h-12 mx-auto text-muted-foreground mb-4" />
-            <h3 className="text-lg font-medium mb-2">No Active Polls</h3>
-            <p className="text-muted-foreground">
-              There are currently no active polls available for voting. Check back later!
-            </p>
+            <h3 className="text-lg font-medium mb-2">{t('civil:vote.noActivePolls')}</h3>
+            <p className="text-muted-foreground">{t('civil:vote.noActivePollsDescription')}</p>
           </CardContent>
         </Card>
       ) : (
@@ -86,7 +86,7 @@ const CivilVotePage: React.FC = () => {
                 <div className="flex items-start justify-between">
                   <CardTitle className="text-lg line-clamp-2">{poll.title}</CardTitle>
                   <Badge variant="default" className="ml-2">
-                    Active
+                    {t('common:status.active')}
                   </Badge>
                 </div>
                 {poll.description && <p className="text-sm text-muted-foreground line-clamp-3">{poll.description}</p>}
@@ -100,16 +100,16 @@ const CivilVotePage: React.FC = () => {
                     </div>
                     <div className="flex items-center">
                       <Users className="w-4 h-4 mr-1" />
-                      {poll.options?.length || 0} options
+                      {t('civil:vote.optionsLabel')} {poll.options?.length || 0}
                     </div>
                   </div>
 
                   <div className="space-y-2">
-                    <p className="text-sm font-medium">Options:</p>
+                    <p className="text-sm font-medium">{t('civil:vote.optionsLabel')}</p>
                     <div className="flex flex-wrap gap-1">
                       {poll.options?.slice(0, 3).map((option, index) => (
                         <Badge key={`option-${index}`} variant="secondary" className="text-xs">
-                          {option.length > 15 ? `${option.substring(0, 15)}...` : option}
+                          {option.text.length > 15 ? `${option.text.substring(0, 15)}...` : option.text}
                         </Badge>
                       ))}
                       {poll.options && poll.options.length > 3 && (
@@ -123,7 +123,7 @@ const CivilVotePage: React.FC = () => {
                   <Link to={civilRoutes.voteOnPoll.replace(':id', poll.id)} className="block">
                     <Button className="w-full">
                       <Vote className="w-4 h-4 mr-2" />
-                      Vote Now
+                      {t('civil:vote.voteNow')}
                     </Button>
                   </Link>
                 </div>

@@ -9,6 +9,7 @@ import { Skeleton } from '@/components/ui/skeleton';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { usePollStore } from '@/features/polls/pollsStore';
 import { useVoteStore } from '@/features/votes/votesStore';
+import { getVote, type VoteStatusResponse } from '@/features/votes/get-vote/getVote';
 import { civilRoutes } from '@/navigations/urls';
 import { ArrowLeft, Vote, CheckCircle, Calendar } from 'lucide-react';
 import { toast } from 'sonner';
@@ -17,7 +18,7 @@ const CivilVoteOnPollPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const { poll, loading: pollLoading, error: pollError, getPoll, clearError: clearPollError } = usePollStore();
-  const { createVote, loading: voteLoading, error: voteError, getVote, clearError: clearVoteError } = useVoteStore();
+  const { createVote, loading: voteLoading, error: voteError, clearError: clearVoteError } = useVoteStore();
 
   const [selectedOption, setSelectedOption] = useState<string>('');
   const [hasVoted, setHasVoted] = useState<boolean>(false);
@@ -30,8 +31,8 @@ const CivilVoteOnPollPage: React.FC = () => {
     if (id) {
       getPoll({ id });
       // Check if user has already voted
-      getVote({ pollId: id, voterId })
-        .then((result) => {
+      getVote({ pollId: id })
+        .then((result: VoteStatusResponse) => {
           if (result?.hasVoted) {
             setHasVoted(true);
           }
@@ -44,7 +45,7 @@ const CivilVoteOnPollPage: React.FC = () => {
       clearPollError();
       clearVoteError();
     };
-  }, [id, getPoll, getVote, clearPollError, clearVoteError]);
+  }, [id, getPoll, clearPollError, clearVoteError]);
 
   const formatDate = (dateString: string) => {
     return new Date(dateString).toLocaleDateString('en-US', {
@@ -217,9 +218,9 @@ const CivilVoteOnPollPage: React.FC = () => {
                     key={`vote-option-${index}`}
                     className="flex items-center space-x-2 p-3 rounded-lg border hover:bg-accent transition-colors"
                   >
-                    <RadioGroupItem value={option} id={`option-${index}`} />
+                    <RadioGroupItem value={option.text} id={`option-${index}`} />
                     <Label htmlFor={`option-${index}`} className="flex-1 cursor-pointer">
-                      {option}
+                      {option.text}
                     </Label>
                   </div>
                 ))}

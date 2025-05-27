@@ -30,7 +30,7 @@ const DashboardPage: React.FC = () => {
   };
 
   const stats = useMemo(() => {
-    const activePolls = polls.filter((poll) => poll.status === 'active');
+    const activePolls = polls?.filter((poll) => poll.status === 'active');
     // Mock total votes calculation - in real app this would come from aggregated data
     const estimatedTotalVotes = polls.length * 50; // Rough estimate
 
@@ -44,28 +44,34 @@ const DashboardPage: React.FC = () => {
       {
         title: t('admin:dashboard.stats.totalPolls'),
         value: pollsLoading ? '...' : polls.length.toString(),
-        change: pollsLoading ? '...' : `${activePolls.length} active`,
+        change: pollsLoading ? '...' : `${activePolls.length} ${t('admin:dashboard.stats.activeStatus')}`,
         icon: BarChart3,
         trend: 'neutral' as const,
       },
       {
         title: t('admin:dashboard.stats.activePolls'),
         value: pollsLoading ? '...' : activePolls.length.toString(),
-        change: pollsLoading ? '...' : `${polls.length - activePolls.length} completed`,
+        change: pollsLoading
+          ? '...'
+          : `${polls.length - activePolls.length} ${t('admin:dashboard.stats.completedStatus')}`,
         icon: Vote,
         trend: 'neutral' as const,
       },
       {
         title: t('admin:dashboard.stats.totalVotes'),
         value: pollsLoading ? '...' : estimatedTotalVotes.toString(),
-        change: pollsLoading ? '...' : `across ${polls.length} polls`,
+        change: pollsLoading ? '...' : t('admin:dashboard.stats.acrossPolls', { count: polls.length }),
         icon: TrendingUp,
         trend: 'up' as const,
       },
       {
         title: t('admin:dashboard.stats.recentActivity'),
-        value: pollsLoading ? '...' : recentPoll ? `${daysSinceLastPoll}d` : 'None',
-        change: pollsLoading ? '...' : recentPoll ? 'Last poll created' : 'No polls yet',
+        value: pollsLoading ? '...' : recentPoll ? `${daysSinceLastPoll}d` : t('admin:dashboard.stats.none'),
+        change: pollsLoading
+          ? '...'
+          : recentPoll
+            ? t('admin:dashboard.stats.lastPollCreated')
+            : t('admin:dashboard.stats.noPolls'),
         icon: Clock,
         trend: 'neutral' as const,
       },
@@ -75,14 +81,14 @@ const DashboardPage: React.FC = () => {
   const quickActions = [
     {
       title: t('admin:dashboard.quickActions.createPoll'),
-      description: 'Start a new poll for your community',
+      description: t('admin:dashboard.quickActions.createPollDescription'),
       icon: Plus,
       action: () => setIsCreatePollOpen(true),
       variant: 'default' as const,
     },
     {
       title: t('admin:dashboard.quickActions.viewPolls'),
-      description: 'Manage and monitor all polls',
+      description: t('admin:dashboard.quickActions.viewPollsDescription'),
       icon: BarChart3,
       action: () => navigate(adminRoutes.polls),
       variant: 'outline' as const,
@@ -162,7 +168,7 @@ const DashboardPage: React.FC = () => {
               <h3 className="font-medium mb-2">{t('admin:dashboard.recentPolls.error')}</h3>
               <p className="text-muted-foreground mb-4">{pollsError}</p>
               <Button onClick={() => getPolls()} variant="outline">
-                Try Again
+                {t('common:actions.tryAgain')}
               </Button>
             </CardContent>
           </Card>
@@ -178,18 +184,19 @@ const DashboardPage: React.FC = () => {
                         {poll.status === 'active' ? (
                           <>
                             <Vote className="h-3 w-3 mr-1" />
-                            Active
+                            {t('common:status.active')}
                           </>
                         ) : (
                           <>
                             <CheckCircle className="h-3 w-3 mr-1" />
-                            Completed
+                            {t('common:status.completed')}
                           </>
                         )}
                       </Badge>
                     </div>
                     <p className="text-sm text-muted-foreground">
-                      {poll.votes} votes • Created {poll.endDate}
+                      {t('admin:dashboard.recentPolls.votesCount', { count: poll.votes })} •{' '}
+                      {t('admin:dashboard.recentPolls.createdOn', { date: poll.endDate })}
                     </p>
                   </div>
                   <Button
@@ -197,7 +204,7 @@ const DashboardPage: React.FC = () => {
                     size="sm"
                     onClick={() => navigate(adminRoutes.pollDetails.replace(':id', poll.id))}
                   >
-                    View Details
+                    {t('common:actions.viewDetails')}
                   </Button>
                 </div>
               </CardContent>
@@ -211,7 +218,7 @@ const DashboardPage: React.FC = () => {
               <p className="text-muted-foreground mb-4">{t('admin:dashboard.recentPolls.createFirst')}</p>
               <Button onClick={() => navigate(adminRoutes.pollsCreate)}>
                 <Plus className="h-4 w-4 mr-2" />
-                Create Your First Poll
+                {t('admin:dashboard.recentPolls.createFirstButton')}
               </Button>
             </CardContent>
           </Card>
@@ -255,7 +262,7 @@ const DashboardPage: React.FC = () => {
                       </CardHeader>
                       <CardContent className="pt-0">
                         <Button variant={action.variant} className="w-full">
-                          Get Started
+                          {t('common:actions.getStarted')}
                         </Button>
                       </CardContent>
                     </Card>
@@ -272,7 +279,7 @@ const DashboardPage: React.FC = () => {
       <Dialog open={isCreatePollOpen} onOpenChange={setIsCreatePollOpen}>
         <DialogContent className="max-w-2xl">
           <DialogHeader>
-            <DialogTitle>Create New Poll</DialogTitle>
+            <DialogTitle>{t('admin:dashboard.quickActions.createPoll')}</DialogTitle>
           </DialogHeader>
           <CreatePollForm onSuccess={handlePollCreated} />
         </DialogContent>

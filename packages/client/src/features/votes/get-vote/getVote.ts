@@ -7,7 +7,11 @@ export const getVoteSchema = z.object({
 
 export type GetVotePayload = z.infer<typeof getVoteSchema>;
 
-export const getVote = async (payload: GetVotePayload) => {
+export interface VoteStatusResponse {
+  hasVoted: boolean;
+}
+
+export const getVote = async (payload: GetVotePayload): Promise<VoteStatusResponse> => {
   const { voterId, role } = useAuthStore.getState();
 
   if (role !== 'civil') {

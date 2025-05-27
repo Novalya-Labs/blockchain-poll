@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
@@ -13,6 +14,7 @@ import { Plus, Eye, Calendar } from 'lucide-react';
 import { CreatePollForm } from '@/components/forms/CreatePollForm';
 
 const AdminPollsPage: React.FC = () => {
+  const { t } = useTranslation();
   const { polls, loading, error, getPolls, clearError } = usePollStore();
   const [isCreateDialogOpen, setIsCreateDialogOpen] = useState(false);
 
@@ -66,17 +68,17 @@ const AdminPollsPage: React.FC = () => {
   return (
     <div className="container mx-auto p-6">
       <div className="flex justify-between items-center mb-6">
-        <h1 className="text-3xl font-bold">Polls Management</h1>
+        <h1 className="text-3xl font-bold">{t('admin:polls.title')}</h1>
         <Dialog open={isCreateDialogOpen} onOpenChange={setIsCreateDialogOpen}>
           <DialogTrigger asChild>
             <Button>
               <Plus className="w-4 h-4 mr-2" />
-              Create Poll
+              {t('admin:polls.createPoll')}
             </Button>
           </DialogTrigger>
           <DialogContent className="sm:max-w-[600px]">
             <DialogHeader>
-              <DialogTitle>Create New Poll</DialogTitle>
+              <DialogTitle>{t('admin:polls.createNewPoll')}</DialogTitle>
             </DialogHeader>
             <CreatePollForm onSuccess={handleCreateSuccess} />
           </DialogContent>
@@ -91,22 +93,22 @@ const AdminPollsPage: React.FC = () => {
 
       <Card>
         <CardHeader>
-          <CardTitle>All Polls</CardTitle>
+          <CardTitle>{t('admin:polls.allPolls')}</CardTitle>
         </CardHeader>
         <CardContent>
           {polls.length === 0 ? (
             <div className="text-center py-8">
-              <p className="text-muted-foreground mb-4">No polls created yet</p>
+              <p className="text-muted-foreground mb-4">{t('admin:polls.noPollsYet')}</p>
               <Dialog open={isCreateDialogOpen} onOpenChange={setIsCreateDialogOpen}>
                 <DialogTrigger asChild>
                   <Button variant="outline">
                     <Plus className="w-4 h-4 mr-2" />
-                    Create Your First Poll
+                    {t('admin:polls.createFirstPoll')}
                   </Button>
                 </DialogTrigger>
                 <DialogContent className="sm:max-w-[600px]">
                   <DialogHeader>
-                    <DialogTitle>Create New Poll</DialogTitle>
+                    <DialogTitle>{t('admin:polls.createNewPoll')}</DialogTitle>
                   </DialogHeader>
                   <CreatePollForm onSuccess={handleCreateSuccess} />
                 </DialogContent>
@@ -116,12 +118,12 @@ const AdminPollsPage: React.FC = () => {
             <Table>
               <TableHeader>
                 <TableRow>
-                  <TableHead>Title</TableHead>
-                  <TableHead>Description</TableHead>
-                  <TableHead>Options</TableHead>
-                  <TableHead>Status</TableHead>
-                  <TableHead>Created</TableHead>
-                  <TableHead>Actions</TableHead>
+                  <TableHead>{t('admin:polls.table.title')}</TableHead>
+                  <TableHead>{t('admin:polls.table.description')}</TableHead>
+                  <TableHead>{t('admin:polls.table.options')}</TableHead>
+                  <TableHead>{t('admin:polls.table.status')}</TableHead>
+                  <TableHead>{t('admin:polls.table.created')}</TableHead>
+                  <TableHead>{t('admin:polls.table.actions')}</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
@@ -130,7 +132,9 @@ const AdminPollsPage: React.FC = () => {
                     <TableCell className="font-medium">{poll.title}</TableCell>
                     <TableCell className="max-w-xs truncate">{poll.description}</TableCell>
                     <TableCell>
-                      <Badge variant="secondary">{poll.options?.length || 0} options</Badge>
+                      <Badge variant="secondary">
+                        {t('admin:polls.table.optionsCount', { count: poll.options?.length || 0 })}
+                      </Badge>
                     </TableCell>
                     <TableCell>
                       <Badge variant={poll.status === 'active' ? 'default' : 'secondary'}>{poll.status}</Badge>
@@ -145,7 +149,7 @@ const AdminPollsPage: React.FC = () => {
                       <Link to={adminRoutes.pollDetails.replace(':id', poll.id)}>
                         <Button variant="outline" size="sm">
                           <Eye className="w-4 h-4 mr-1" />
-                          View
+                          {t('admin:polls.table.view')}
                         </Button>
                       </Link>
                     </TableCell>

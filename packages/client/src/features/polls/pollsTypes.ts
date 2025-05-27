@@ -5,7 +5,7 @@ export interface Poll {
   id: string;
   title: string;
   description: string;
-  options: Array<{ id: string; text: string }>;
+  options: { id: string; text: string }[];
   status: 'active' | 'closed';
   createdAt: string;
 }

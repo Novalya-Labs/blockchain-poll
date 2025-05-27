@@ -1,4 +1,9 @@
 {
+  "errorBoundary": {
+    "title": "Oops! Quelque chose s'est mal passé.",
+    "subtitle": "Nous sommes désolés, mais une erreur inattendue est survenue.",
+    "button": "Retour à l'accueil"
+  },
   "common": {
     "userDropdown": {
       "signOut": "Déconnexion",
@@ -8,9 +13,75 @@
         "en": "Anglais",
         "fr": "Français"
       }
+    },
+    "notFound": {
+      "title": "404",
+      "subtitle": "Page Non Trouvée",
+      "description": "La page que vous recherchez n'existe pas ou a été déplacée.",
+      "button": "Retour à l'accueil"
+    },
+    "actions": {
+      "tryAgain": "Réessayer",
+      "getStarted": "Commencer",
+      "backToPolls": "Retour aux Sondages",
+      "viewDetails": "Voir les Détails",
+      "viewOtherPolls": "Voir les Autres Sondages",
+      "getNotified": "Être Notifié"
+    },
+    "status": {
+      "active": "Actif",
+      "completed": "Terminé",
+      "urgent": "Urgent",
+      "voted": "Voté"
+    },
+    "labels": {
+      "votes": "votes",
+      "options": "options",
+      "participants": "participants",
+      "description": "Description",
+      "participation": "Participation"
     }
   },
-  "home": {},
+  "home": {
+    "title": "Sondage Blockchain",
+    "subtitle": "Participez aux décisions démocratiques grâce à la technologie blockchain"
+  },
+  "howItWorks": {
+    "title": "Comment Ça Marche",
+    "subtitle": "Découvrez notre plateforme et comment nous aidons à connecter les citoyens avec leur administration locale",
+    "steps": {
+      "createAccount": {
+        "title": "Créer un Compte",
+        "description": "Inscrivez-vous en tant que citoyen ou administrateur pour accéder aux fonctionnalités de la plateforme"
+      },
+      "submitRequests": {
+        "title": "Soumettre des Demandes",
+        "description": "Les citoyens peuvent facilement soumettre et suivre leurs demandes administratives"
+      },
+      "getUpdates": {
+        "title": "Recevoir des Mises à Jour",
+        "description": "Recevez des mises à jour en temps réel et des notifications sur le statut de vos demandes"
+      }
+    },
+    "cta": {
+      "title": "Prêt à commencer ?",
+      "button": "S'inscrire Maintenant"
+    }
+  },
+  "forms": {
+    "createPoll": {
+      "title": "Titre du Sondage",
+      "titlePlaceholder": "Entrez le titre du sondage...",
+      "description": "Description (Optionnelle)",
+      "descriptionPlaceholder": "Entrez la description du sondage...",
+      "options": "Options du Sondage",
+      "addOption": "Ajouter une Option",
+      "optionPlaceholder": "Option",
+      "minOptionsWarning": "Un sondage doit avoir au moins 2 options.",
+      "creating": "Création...",
+      "createPoll": "Créer le Sondage"
+    }
+  },
   "admin": {
     "dashboard": {
       "title": "Tableau de Bord Admin",
@@ -19,7 +90,9 @@
       "quickActions": {
         "title": "Actions Rapides",
         "createPoll": "Créer un Nouveau Sondage",
-        "viewPolls": "Voir Tous les Sondages"
+        "createPollDescription": "Démarrer un nouveau sondage pour votre communauté",
+        "viewPolls": "Voir Tous les Sondages",
+        "viewPollsDescription": "Gérer et surveiller tous les sondages"
       },
       "stats": {
         "title": "Aperçu",
@@ -28,16 +101,58 @@
         "totalVotes": "Total des Votes",
         "recentActivity": "Activité Récente",
         "loading": "Chargement...",
-        "noData": "Aucune donnée disponible"
+        "noData": "Aucune donnée disponible",
+        "activeStatus": "actif",
+        "completedStatus": "terminé",
+        "acrossPolls": "sur {count} sondages",
+        "lastPollCreated": "Dernier sondage créé",
+        "noPolls": "Aucun sondage",
+        "none": "Aucun"
       },
       "recentPolls": {
         "title": "Sondages Récents",
         "viewAll": "Voir Tout",
         "noPollsYet": "Aucun sondage créé pour le moment",
         "createFirst": "Créez votre premier sondage pour commencer",
+        "createFirstButton": "Créer Votre Premier Sondage",
         "loading": "Chargement des sondages...",
-        "error": "Échec du chargement des sondages"
+        "error": "Échec du chargement des sondages",
+        "votesCount": "{count} votes",
+        "createdOn": "Créé le {date}"
       }
+    },
+    "polls": {
+      "title": "Gestion des Sondages",
+      "createPoll": "Créer un Sondage",
+      "createNewPoll": "Créer un Nouveau Sondage",
+      "allPolls": "Tous les Sondages",
+      "noPollsYet": "Aucun sondage créé pour le moment",
+      "createFirstPoll": "Créer Votre Premier Sondage",
+      "table": {
+        "title": "Titre",
+        "description": "Description",
+        "options": "Options",
+        "status": "Statut",
+        "created": "Créé",
+        "actions": "Actions",
+        "view": "Voir",
+        "optionsCount": "{count} options"
+      }
+    },
+    "pollDetails": {
+      "title": "Détails du Sondage",
+      "pollNotFound": "Sondage non trouvé",
+      "information": "Informations du Sondage",
+      "results": "Résultats du Sondage",
+      "recentVotes": "Votes Récents",
+      "createdOn": "Créé le {date}",
+      "totalVotes": "{count} votes au total",
+      "votesCount": "{count} votes ({percentage}%)",
+      "noOptions": "Aucune option disponible pour ce sondage.",
+      "noVotes": "Aucun vote pour le moment.",
+      "voterNumber": "Votant #{number}",
+      "votedFor": "a voté pour \"{choice}\"",
+      "moreVotes": "Et {count} votes de plus..."
     }
   },
   "civil": {
@@ -47,7 +162,8 @@
       "subtitle": "Participez aux décisions communautaires et faites entendre votre voix",
       "quickActions": {
         "title": "Actions Rapides",
-        "browsePolls": "Parcourir les Sondages Actifs"
+        "browsePolls": "Parcourir les Sondages Actifs",
+        "browsePollsDescription": "Trouvez et participez aux sondages actifs"
       },
       "stats": {
         "title": "Votre Participation",
@@ -56,7 +172,13 @@
         "upcomingPolls": "Sondages à Venir",
         "lastActivity": "Dernière Activité",
         "loading": "Chargement...",
-        "noData": "Aucune donnée disponible"
+        "noData": "Aucune donnée disponible",
+        "outOfTotal": "sur {total} au total",
+        "availableToVote": "disponibles pour voter",
+        "startingSoon": "commençant bientôt",
+        "lastVoteCast": "dernier vote exprimé",
+        "noVotesYet": "Aucun vote pour le moment",
+        "none": "Aucun"
       },
       "activePolls": {
         "title": "Sondages Actifs",
@@ -68,19 +190,52 @@
         "participants": "participants",
         "loading": "Chargement des sondages...",
         "error": "Échec du chargement des sondages",
-        "votes": "votes"
+        "votes": "votes",
+        "viewResults": "Voir les Résultats",
+        "category": "Communauté"
       },
       "recentActivity": {
         "title": "Activité Récente",
         "noActivity": "Aucune activité récente",
-        "startVoting": "Commencez à participer aux sondages pour voir votre activité ici"
+        "startVoting": "Commencez à participer aux sondages pour voir votre activité ici",
+        "votedOn": "A voté sur",
+        "today": "Aujourd'hui",
+        "yesterday": "Hier",
+        "daysAgo": "Il y a {days} jours"
       }
+    },
+    "vote": {
+      "title": "Sondages Disponibles",
+      "subtitle": "Choisissez un sondage ci-dessous pour exprimer votre vote. Vous ne pouvez voter qu'une seule fois par sondage.",
+      "noActivePolls": "Aucun Sondage Actif",
+      "noActivePollsDescription": "Il n'y a actuellement aucun sondage actif disponible pour le vote. Revenez plus tard !",
+      "allPollsClosed": "Tous les Sondages Fermés",
+      "allPollsClosedDescription": "Tous les sondages disponibles ont été fermés. Aucun vote n'est actuellement disponible.",
+      "voteNow": "Voter Maintenant",
+      "optionsLabel": "Options :",
+      "moreOptions": "+{count} de plus"
+    },
+    "voteOnPoll": {
+      "title": "Exprimez Votre Vote",
+      "pollClosed": "Sondage Fermé",
+      "pollClosedDescription": "Ce sondage n'accepte plus de votes.",
+      "alreadyVoted": "Déjà Voté",
+      "alreadyVotedDescription": "Vous avez déjà exprimé votre vote pour ce sondage. Merci de votre participation !",
+      "chooseOption": "Choisissez votre option :",
+      "submitVote": "Soumettre le Vote",
+      "submittingVote": "Soumission du Vote...",
+      "youSelected": "Vous avez sélectionné : {option}",
+      "createdOn": "Créé le {date}",
+      "noOptionsAvailable": "Ce sondage n'a aucune option disponible. Veuillez contacter l'administrateur.",
+      "voteSuccess": "Vote soumis avec succès !",
+      "voteError": "Échec de la soumission du vote. Veuillez réessayer."
     }
   },
   "auth": {
     "signIn": {
       "title": "Connexion",
       "subtitle": "Connectez-vous à votre compte pour continuer",
+      "signIn": "Connexion",
       "role": {
         "civil": "Civil",
         "admin": "Admin"
